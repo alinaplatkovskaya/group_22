@@ -3,7 +3,7 @@ Bug report
 Identifier
 Priority
 Summary
-Description
+Descriprion
 Steps to reproduce
 Expected results
 
