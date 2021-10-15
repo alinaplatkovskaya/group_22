@@ -219,18 +219,23 @@ select min(monthly_salary) from employees_salary
 
 25. Вывести количество QA инженеров.
   
-  select count(role_name) from roles
-   where role_name like '%QA engineer%';
-
+ select count(employee_id) from roles_employees
+  inner join roles
+  on roles.id=roles_employees.employee_id 
+  where role_name like '%QA engineer%';
  26. Вывести количество Middle специалистов.
   
-  select count(role_name) from roles 
-   where role_name like '%Middle%';
+  select count(employee_id) from roles_employees
+  inner join roles
+  on roles.id=roles_employees.employee_id 
+  where role_name like '%Middle%';
 
  27. Вывести количество разработчиков.
   
-  select count(role_name) from roles 
-   where role_name like '%developer%';
+  select count(employee_id) from roles_employees
+  inner join roles
+  on roles.id=roles_employees.employee_id 
+  where role_name like '%developer%';
 
  28. Вывести фонд (сумму) зарплаты разработчиков.
   
@@ -243,11 +248,13 @@ select min(monthly_salary) from employees_salary
 
  29. Вывести имена, должности и ЗП всех специалистов по возрастанию.
    
-  select employees.employee_name, roles.role_name, employees_salary.monthly_salary from employees
-  inner join roles
-  on employees.id=roles.id 
+select employees.employee_name, roles.role_name, employees_salary.monthly_salary from employees
   inner join employees_salary 
-  on employees.id=employees_salary.id
+  on employees.id= employees_salary.employee_id 
+  inner join roles_employees
+  on employees_salary.employee_id= roles_employees.employee_id
+  inner join roles
+  on roles.id= roles_employees.role_id 
   order by monthly_salary;
 
  30. Вывести имена, должности и ЗП всех специалистов по возрастанию у специалистов у которых ЗП от 1700 до 2300.
