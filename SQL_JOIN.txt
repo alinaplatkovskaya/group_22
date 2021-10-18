@@ -219,23 +219,30 @@ select min(monthly_salary) from employees_salary
 
 25. Вывести количество QA инженеров.
   
- select count(employee_id) from roles_employees
+ select count(*) from employees
+   inner join roles_employees
+  on employees.id=roles_employees.employee_id 
   inner join roles
-  on roles.id=roles_employees.employee_id 
+  on roles_employees.role_id=roles.id
   where role_name like '%QA engineer%';
+
  26. Вывести количество Middle специалистов.
   
-  select count(employee_id) from roles_employees
+select count(*) from employees
+  inner join roles_employees
+  on employees.id=roles_employees.employee_id 
   inner join roles
-  on roles.id=roles_employees.employee_id 
+  on roles_employees.role_id=roles.id
   where role_name like '%Middle%';
 
  27. Вывести количество разработчиков.
   
-  select count(employee_id) from roles_employees
+ select count(*) from employees
+  inner join roles_employees
+  on employees.id=roles_employees.employee_id 
   inner join roles
-  on roles.id=roles_employees.employee_id 
-  where role_name like '%developer%';
+  on roles_employees.role_id=roles.id
+   where role_name like '%developer%';
 
  28. Вывести фонд (сумму) зарплаты разработчиков.
   
