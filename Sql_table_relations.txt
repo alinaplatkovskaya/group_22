@@ -1,0 +1,215 @@
+create table salary (
+id serial primary key,
+monthly_salary int
+)
+
+
+create table roles (
+id serial primary key,
+roles_title varchar  not null
+)
+
+
+create table roles_salary (
+id serial primary key,
+id_role int not null,
+id_salary int not null,
+foreign key (id_salary)
+        references salary (id),
+foreign key (id_role)
+        references roles (id)
+)
+
+
+create table employees (
+id serial primary key,
+employee_name varchar not null
+)
+
+
+create table employees_roles (
+id serial primary key,
+id_role int not null,
+id_employee int not null,
+foreign key (id_role)
+        references roles (id),
+foreign key (id_employee)
+        references employees (id)
+)
+
+
+create table service (
+id serial primary key,
+service_title varchar not null,
+price int not null
+)
+
+
+create table materials (
+id serial primary key,
+material_title varchar not null,
+amount int not null,
+price int not null
+)
+
+
+create table claim (
+id serial primary key,
+service_id int not null,
+employee_id int not null,
+material_id int not null,
+claim_date date not null,
+sails_manager varchar not null,
+foreign key (employee_id)
+        references employees (id),
+foreign key (service_id)
+        references service (id),
+foreign key (material_id)
+        references materials (id)
+        )
+
+
+insert into salary(id,monthly_salary) values (default,100);
+insert into salary(id,monthly_salary) values (default,200);
+insert into salary(id,monthly_salary) values (default,300);
+insert into salary(id,monthly_salary) values (default,400);
+insert into salary(id,monthly_salary) values (default,500);
+insert into salary(id,monthly_salary) values (default,600);
+insert into salary(id,monthly_salary) values (default,700);
+insert into salary(id,monthly_salary) values (default,800);
+insert into salary(id,monthly_salary) values (default,900);
+insert into salary(id,monthly_salary) values (default,1000);
+select * from salary;
+
+
+insert into roles(id,roles_title) values (default,'Director');
+insert into roles(id,roles_title) values (default,'Director2');
+insert into roles(id,roles_title) values (default,'Manager');
+insert into roles(id,roles_title) values (default,'Manager2');
+insert into roles(id,roles_title) values (default,'Prodavec');
+insert into roles(id,roles_title) values (default,'Prodavec2');
+insert into roles(id,roles_title) values (default,'Prodavec3');
+insert into roles(id,roles_title) values (default,'Prodavec4');
+insert into roles(id,roles_title) values (default,'Podsobny_rabochiy');
+insert into roles(id,roles_title) values (default,'Podsobny_rabochiy2');
+select * from roles;
+
+
+insert into roles_salary (id,id_role,id_salary) values (default,1,3);
+insert into roles_salary (id,id_role,id_salary) values (default,3,1);
+insert into roles_salary (id,id_role,id_salary) values (default,2,8);
+insert into roles_salary (id,id_role,id_salary) values (default,4,9);
+insert into roles_salary (id,id_role,id_salary) values (default,6,10);
+insert into roles_salary (id,id_role,id_salary) values (default,5,7);
+insert into roles_salary (id,id_role,id_salary) values (default,7,3);
+insert into roles_salary (id,id_role,id_salary) values (default,8,5);
+insert into roles_salary (id,id_role,id_salary) values (default,10,1);
+insert into roles_salary (id,id_role,id_salary) values (default,9,2);
+select *from roles_salary;
+
+
+insert into employees (id,employee_name) values (default,'Arina Sosnova');
+insert into employees (id,employee_name) values (default,'Pavel Suvorov');
+insert into employees (id,employee_name) values (default,'Diana Krasnova');
+insert into employees (id,employee_name) values (default,'Adam Titov');
+insert into employees (id,employee_name) values (default,'Boris Litvin');
+insert into employees (id,employee_name) values (default,'Nina Yarenko');
+insert into employees (id,employee_name) values (default,'Dima Omarov');
+insert into employees (id,employee_name) values (default,'Gleb Filuk');
+insert into employees (id,employee_name) values (default,'Margarita Kozlova');
+insert into employees (id,employee_name) values (default,'Polina Abuhovskaya');
+select * from employees;
+
+
+
+
+insert into employees_roles (id,id_role,id_employee) values (default,1,5);
+insert into employees_roles (id,id_role,id_employee) values (default,2,6);
+insert into employees_roles (id,id_role,id_employee) values (default,3,9);
+insert into employees_roles (id,id_role,id_employee) values (default,4,8);
+insert into employees_roles (id,id_role,id_employee) values (default,5,10);
+insert into employees_roles (id,id_role,id_employee) values (default,10,1);
+insert into employees_roles (id,id_role,id_employee) values (default,9,4);
+insert into employees_roles (id,id_role,id_employee) values (default,8,2);
+insert into employees_roles (id,id_role,id_employee) values (default,7,7);
+insert into employees_roles (id,id_role,id_employee) values (default,6,3);
+select * from employees_roles;
+
+
+insert into service (id,service_title,price) values (default,'Dostavka1',150);
+insert into service (id,service_title,price) values (default,'Dostavka2',180);
+insert into service (id,service_title,price) values (default,'Dostavka3',200);
+insert into service (id,service_title,price) values (default,'Dostavka4',220);
+insert into service (id,service_title,price) values (default,'Dostavka5',250);
+insert into service (id,service_title,price) values (default,'Dostavka6',270);
+insert into service (id,service_title,price) values (default,'Dostavka7',300);
+insert into service (id,service_title,price) values (default,'Dostavka8',320);
+insert into service (id,service_title,price) values (default,'Dostavka9',340);
+insert into service (id,service_title,price) values (default,'Dostavka10',350);
+select * from service;
+
+
+
+
+insert into materials (id,material_title ,amount, price) values (default,'plitka',10,340);
+insert into materials (id,material_title ,amount, price) values (default,'oboi',22,400);
+insert into materials (id,material_title ,amount, price) values (default,'kraska_glyanec',35,230);
+insert into materials (id,material_title ,amount, price) values (default,'kraska_matovaya',45,280);
+insert into materials (id,material_title ,amount, price) values (default,'laminat',12,380);
+insert into materials (id,material_title ,amount, price) values (default,'parket',15,500);
+insert into materials (id,material_title ,amount, price) values (default,'linoleum',40,75);
+insert into materials (id,material_title ,amount, price) values (default,'cement',43,70);
+insert into materials (id,material_title ,amount, price) values (default,'pobelka',20,20);
+insert into materials (id,material_title ,amount, price) values (default,'gipsokarton',15,110);
+select * from materials;
+
+
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,1,2,10, TO_DATE('17/12/2021', 'DD/MM/YYYY'),'Oleg Holmin');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,2,5,7,TO_DATE('11/12/2021', 'DD/MM/YYYY'),'Victor Ivanov');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,3,1,9,TO_DATE('17/12/2021', 'DD/MM/YYYY'),'Denis Suhorukov');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,4,3,8,TO_DATE('14/12/2021', 'DD/MM/YYYY'),'Mikhail Korol');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,5,6,5,TO_DATE('17/12/2021', 'DD/MM/YYYY'),'Nikita Zubrovich');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,6,4,2,TO_DATE('15/12/2021', 'DD/MM/YYYY'),'Sara Lozkina');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,7,8,3,TO_DATE('12/12/2021', 'DD/MM/YYYY'),'Marina Erevanova');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,8,7,1,TO_DATE('12/12/2021', 'DD/MM/YYYY'),'Vlada Bibikova');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,9,10,4,TO_DATE('16/12/2021', 'DD/MM/YYYY'),'Rinata Ogarkova');
+insert into claim (id,service_id,employee_id,material_id,claim_date,sails_manager) values (default,10,9,6,TO_DATE('19/12/2021', 'DD/MM/YYYY'),'Anastasia Smith');
+select * from claim;
+
+
+create table Suppliers (
+id serial primary key,
+name_suppliers varchar  not null
+)
+
+
+insert into Suppliers (id,name_suppliers) values (default,'Xkom');
+insert into Suppliers (id,name_suppliers) values (default,'Oz');
+insert into Suppliers (id,name_suppliers) values (default,'Promo');
+insert into Suppliers (id,name_suppliers) values (default,'DPD');
+insert into Suppliers (id,name_suppliers) values (default,'Inpost');
+insert into Suppliers (id,name_suppliers) values (default,'Lime');
+insert into Suppliers (id,name_suppliers) values (default,'Panda');
+insert into Suppliers (id,name_suppliers) values (default,'Kolleto');
+insert into Suppliers (id,name_suppliers) values (default,'Binet');
+insert into Suppliers (id,name_suppliers) values (default,'Jops');
+select * from Suppliers;
+
+
+ALTER TABLE materials
+ADD suplier_id int,
+ADD FOREIGN KEY (suplier_id) REFERENCES Suppliers(id)
+
+
+ALTER TABLE employees 
+ADD surname varchar(50);
+
+
+ALTER TABLE salary 
+ADD currency varchar(7);
+
+
+
+
+SQL.Конечный результат.Связи между таблицами.
+https://drive.google.com/file/d/1U4BKgEDFNOxoQY72pMCQL4Ypy9kKhKVU/view?usp=sharing
